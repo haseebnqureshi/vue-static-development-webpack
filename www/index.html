@@ -14,7 +14,9 @@
 				<router-link :to="{ name: 'user', params: { id: 123 }}">Go to User</router-link>
 			</p>
 
-			<router-view></router-view>
+			<transition name="fade" mode="out-in">
+				<router-view></router-view>
+			</transition>
 		</div>
 
 		<script type="text/javascript" src="/assets/node_modules/underscore/underscore-min.js"></script>
