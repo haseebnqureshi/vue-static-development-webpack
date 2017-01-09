@@ -1,0 +1,23 @@
+{
+  "name": "vue-static-development",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "local": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haseebnqureshi/vue-static-development.git"
+  },
+  "author": "Haseeb Qureshi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/haseebnqureshi/vue-static-development/issues"
+  },
+  "homepage": "https://github.com/haseebnqureshi/vue-static-development#readme",
+  "devDependencies": {
+    "express": "^4.14.0"
+  }
+}
