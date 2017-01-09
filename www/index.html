@@ -28,6 +28,7 @@
 
 				const Foo = { template: '<div>foo</div>' }
 				const Bar = { template: '<div>bar</div>' }
+				const Login = { template: '<div>login</div>' }
 				const User = { 
 					template: '<div>user {{ $route.params.id }} <router-view></router-view></div>',
 					watch: {
@@ -37,16 +38,24 @@
 					}
 				}
 				const UserProfile = { template: '<div>user profile</div>' }
+				const UserAccount = { template: '<div>user account</div>' }
 				const UserPosts = { template: '<div>user posts</div>' }
 
 				const routes = [
 					{ path: '/foo', name: 'foo', component: Foo },
 					{ path: '/bar', name: 'bar', component: Bar },
+					{ path: '/login', name: 'login', component: Login },
 					{ path: '/user/:id', name: 'user', component: User,
 						children: [
 							{
 								path: 'profile',
 								component: UserProfile
+							},
+							{
+								path: 'account',
+								component: UserAccount,
+								name: 'userAccount',
+								meta: { requiresAuth: true }
 							},
 							{
 								path: 'posts',
@@ -57,9 +66,19 @@
 				]
 
 				const router = new VueRouter({
-					mode: 'history',
+					// mode: 'history',
 					routes
 				})
+
+				router.beforeEach(function(to, from, next) {
+					console.log({ to, from, next });
+					if (to.meta.requiresAuth === true) {
+						next({
+							name: 'login'
+						})
+					}
+					next()
+				});
 
 				const app = new Vue({
 					router
