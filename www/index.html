@@ -11,6 +11,7 @@
 			<p>
 				<router-link to="/foo">Go to Foo</router-link>
 				<router-link to="/bar">Go to Bar</router-link>
+				<router-link :to="{ name: 'user', params: { id: 123 }}">Go to User</router-link>
 			</p>
 
 			<router-view></router-view>
@@ -39,9 +40,9 @@
 				const UserPosts = { template: '<div>user posts</div>' }
 
 				const routes = [
-					{ path: '/foo', component: Foo },
-					{ path: '/bar', component: Bar },
-					{ path: '/user/:id', component: User,
+					{ path: '/foo', name: 'foo', component: Foo },
+					{ path: '/bar', name: 'bar', component: Bar },
+					{ path: '/user/:id', name: 'user', component: User,
 						children: [
 							{
 								path: 'profile',
