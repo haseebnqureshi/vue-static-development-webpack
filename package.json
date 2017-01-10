@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "cd www/assets && npm install",
-    "local": "node index.js"
+    "start": "webpack-dev-server --progress --colors"
   },
   "repository": {
     "type": "git",
@@ -18,7 +17,9 @@
     "url": "https://github.com/haseebnqureshi/vue-static-development/issues"
   },
   "homepage": "https://github.com/haseebnqureshi/vue-static-development#readme",
-  "devDependencies": {
-    "express": "^4.14.0"
+  "devDependencies": {},
+  "dependencies": {
+    "css-loader": "^0.26.1",
+    "style-loader": "^0.13.1"
   }
 }

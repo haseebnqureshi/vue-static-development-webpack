@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Vue Static Development</title>
+		<link rel="stylesheet" type="text/css" href="app.css" />
+	</head>
+	<body>
+
+		<div id="app">
+			<h1>Hello App!</h1>
+			<p>
+				<router-link to="/foo">Go to Foo</router-link>
+				<router-link to="/bar">Go to Bar</router-link>
+				<router-link :to="{ name: 'user', params: { id: 123 }}">Go to User</router-link>
+			</p>
+
+			<transition name="fade" mode="out-in">
+				<router-view></router-view>
+			</transition>
+		</div>
+
+		<script type="text/javascript" src="bundle.js"></script>
+
+	</body>
+</html>
