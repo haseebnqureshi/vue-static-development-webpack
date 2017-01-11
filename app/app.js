@@ -1,21 +1,23 @@
 'use strict';
 
-var jQuery = require('./vendors/jquery.js');
-var _ = require('./vendors/underscore.js');
-var Vue = require('./vendors/vue.js');
-var VueRouter = require('./vendors/vue-router.js');
-var VueResource = require('./vendors/vue-resource.js');
+var jQuery = require('./vendors/jquery.min.js');
+var _ = require('./vendors/underscore.min.js');
+var Vue = require('./vendors/vue.min.js');
+var VueRouter = require('./vendors/vue-router.min.js');
+var VueResource = require('./vendors/vue-resource.min.js');
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
-const Foo = require('./components/Foo.js');
-const Bar = require('./components/Bar.js');
-const Login = require('./components/Login.js');
-const User = require('./components/User.js');
-const UserAccount = require('./components/UserAccount.js');
-const UserPosts = require('./components/UserPosts.js');
-const UserProfile = require('./components/UserProfile.js');
+require('./css/app.css');
+
+const Foo = require('./components/foo.js');
+const Bar = require('./components/bar.js');
+const Login = require('./components/login.js');
+const User = require('./components/user.js');
+const UserAccount = require('./components/user-account.js');
+const UserPosts = require('./components/user-posts.js');
+const UserProfile = require('./components/user-profile.js');
 
 const routes = [
 	{ path: '/foo', name: 'foo', component: Foo },
