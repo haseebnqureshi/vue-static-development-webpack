@@ -5,4 +5,5 @@
 cd app
 webpack
 cd ..
-rsync -avr app/* www --exclude="components" --exclude="vendors" --exclude="app.js" --exclude="webpack.config.js"
+rsync -avr app/* www --exclude="components" --exclude="vendors" --exclude="css" --exclude="app.js" --exclude="webpack.config.js"
+rm app/bundle.*
