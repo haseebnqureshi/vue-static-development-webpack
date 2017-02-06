@@ -1,55 +1,67 @@
 'use strict';
 
-var jQuery = require('./vendors/jquery.min.js');
-var _ = require('./vendors/underscore.min.js');
-var Vue = require('./vendors/vue.min.js');
-var VueRouter = require('./vendors/vue-router.min.js');
-var VueResource = require('./vendors/vue-resource.min.js');
 
-Vue.use(VueRouter);
-Vue.use(VueResource);
+/*===================
+Loading Deps			
+====================*/
 
-require('./css/app.css');
+var Helpers = require('./vendors/hq.helpers.js');
 
-const Foo = require('./components/foo.js');
-const Bar = require('./components/bar.js');
-const Login = require('./components/login.js');
-const User = require('./components/user.js');
-const UserAccount = require('./components/user-account.js');
-const UserPosts = require('./components/user-posts.js');
-const UserProfile = require('./components/user-profile.js');
+var Components = Helpers.webpack.loadall( 
+	require.context('./components', false, /\.js$/)
+);
 
-const routes = [
-	{ path: '/foo', name: 'foo', component: Foo },
-	{ path: '/bar', name: 'bar', component: Bar },
-	{ path: '/login', name: 'login', component: Login },
-	{ path: '/user/:id', name: 'user', component: User,
-		children: [
-			{
-				path: 'profile',
-				component: UserProfile
-			},
-			{
-				path: 'account',
-				component: UserAccount,
-				name: 'userAccount',
-				meta: { requiresAuth: true }
-			},
-			{
-				path: 'posts',
-				component: UserPosts
-			}
-		] 
-	}
-]
+var Vendors = Helpers.webpack.loadall(
+	require.context(`./vendors/${process.env.NODE_ENV}`, false, /\.js$/)
+);
 
-const router = new VueRouter({
+
+/*===================
+Configuring Vue			
+====================*/
+
+Vendors.Vue.use( Vendors.VueRouter);
+Vendors.Vue.use( Vendors.VueResource);
+
+
+/*===================
+Configuring Routes			
+====================*/
+
+const router = new Vendors.VueRouter({
+	routes: [
+		{ path: '/foo', name: 'foo', component: Components.Foo },
+		{ path: '/bar', name: 'bar', component: Components.Bar },
+		{ path: '/login', name: 'login', component: Components.Login },
+		{ path: '/user/:id', name: 'user', component: Components.User,
+			children: [
+				{
+					path: 'profile',
+					component: Components.UserProfile
+				},
+				{
+					path: 'account',
+					component: Components.UserAccount,
+					name: 'userAccount',
+					meta: { requiresAuth: true }
+				},
+				{
+					path: 'posts',
+					component: Components.UserPosts
+				}
+			] 
+		}
+	],
 	// mode: 'history',
-	routes,
 	scrollBehavior: function(to, from, savedPosition) {
 		return savedPosition ? savedPosition : { x:0, y:0 }
 	}
-})
+});
+
+
+/*===================
+Configuring Middleware			
+====================*/
 
 router.beforeEach(function(to, from, next) {
 	console.log({ to, from, next });
@@ -61,6 +73,12 @@ router.beforeEach(function(to, from, next) {
 	next()
 });
 
-const app = new Vue({
-	router
-}).$mount('#app');
+
+/*===================
+Instantiating Application			
+====================*/
+
+const app = new Vendors.Vue({ router }).$mount('#app');
+
+
+

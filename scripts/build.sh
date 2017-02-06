@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# builds your deployable www directory from the app directory
+
 cd app
 webpack
 cd ..

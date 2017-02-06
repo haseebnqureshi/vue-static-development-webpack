@@ -17,10 +17,7 @@
     "url": "https://github.com/haseebnqureshi/vue-static-development/issues"
   },
   "homepage": "https://github.com/haseebnqureshi/vue-static-development#readme",
-  "devDependencies": {},
-  "dependencies": {
-    "css-loader": "^0.26.1",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.14.0"
+  "devDependencies": {
+    "webpack": "^2.2.1"
   }
 }
